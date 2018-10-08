@@ -1,3 +1,24 @@
+## Technologies learned
+ - React
+ - React Router 4
+ - Redux
+ - Semantic-ui (css and react)
+ - Redux Forms
+ - Google Maps React
+ - React Places Autocomplete
+ - React Dropzone
+ - React Cropper
+ - Date FNS
+ - React Datepicker
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
