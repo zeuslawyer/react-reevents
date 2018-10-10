@@ -10,10 +10,9 @@ class App extends Component {
       <div id="wrapper">
         <NavBar />
         <Container className = "main" >
-          
           <EventDashboard/>
         </Container>
-      </div>
+      </div> 
     );
   }
 }
