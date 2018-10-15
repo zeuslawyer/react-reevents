@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import { Segment, Item, Icon, List, Button } from "semantic-ui-react";
-import EventListAttendee from './EventListAttendee'
+import EventListAttendee from "./EventListAttendee";
 
 const randomUserUrl = "https://randomuser.me/api/portraits/women/54.jpg";
 
 class EventListItem extends Component {
   render() {
+    const { eventItem } = this.props;
     return (
       <Segment.Group>
         <Segment>
           <Item.Group>
             <Item>
-              <Item.Image size="tiny" circular src={randomUserUrl} />
+              <Item.Image size="tiny" circular src={eventItem.hostPhotoURL} />
               <Item.Content>
-                <Item.Header as="a">Event Title</Item.Header>
+                <Item.Header as="a">{eventItem.title}}</Item.Header>
                 <Item.Description>
-                  Hosted by <a>hosted by</a>
+                  Hosted by <a>{eventItem.hostedBy}</a>
                 </Item.Description>
               </Item.Content>
             </Item>
@@ -23,18 +24,19 @@ class EventListItem extends Component {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" /> date |<Icon name="marker" /> time
+            <Icon name="clock" /> {eventItem.date} |<Icon name="marker" />{" "}
+            {eventItem.venue}
           </span>
         </Segment>
         <Segment secondary>
           <List horizontal>
-            <EventListAttendee />
-            <EventListAttendee />
-            <EventListAttendee />
+            { eventItem.attendees.map(attendee => {
+               <EventListAttendee key={attendee.id} attendee={attendee} />;
+            }) }
           </List>
         </Segment>
         <Segment clearing>
-          <span>Description ...will go here...</span>
+          <span>{eventItem.description}</span>
           <Button as="a" color="teal" floated="right" content="View" />
         </Segment>
       </Segment.Group>
@@ -43,5 +45,3 @@ class EventListItem extends Component {
 }
 
 export default EventListItem;
-
-
