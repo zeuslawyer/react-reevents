@@ -63,7 +63,25 @@ class EventDashboard extends Component {
       events: events,
       isOpen: false
     };
+
+    // add binders for methods
+    this._handleCancel = this._handleCancel.bind(this)
+    this._handleFormOpen = this._handleFormOpen.bind(this)
   }
+
+
+  _handleFormOpen(){
+    this.setState({
+      isOpen:true
+    })
+  }
+
+  _handleCancel(){
+    this.setState({
+      isOpen: false
+    })
+  }
+
 
   render() {
     return (
@@ -73,9 +91,10 @@ class EventDashboard extends Component {
         </Grid.Column>
 
         <Grid.Column width={6}>
-          <Button positive content="Create Event" />
+          <Button  onClick = {this._handleFormOpen} positive content="Create Event" />
           {/* if conditional shown by &&*/}
-          { this.state.isOpen && <EventForm />}  
+          { this.state.isOpen &&
+           <EventForm handleCancel = {this._handleCancel}/>  }  
 
         </Grid.Column>
       </Grid>
