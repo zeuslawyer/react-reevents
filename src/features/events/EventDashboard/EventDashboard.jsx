@@ -57,26 +57,27 @@ const events = [
 
 //COMPONENT - Parent level
 class EventDashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {    
+
+  // delete constructor function and changed this.state to state 
+    state = {    
       events: events,
       isOpen: false
     };
 
-    // add binders for methods
-    this._handleCancel = this._handleCancel.bind(this)
-    this._handleFormOpen = this._handleFormOpen.bind(this)
-  }
+    // no need for this if methods declared with  arrow functions that return arrow functions
+    // this._handleCancel = this._handleCancel.bind(this)
+    // this._handleFormOpen = this._handleFormOpen.bind(this)
+  
 
-
-  _handleFormOpen(){
+  // methods are now functions that return functions, using arrow function syntax. 
+  // then removes the need for binding and constructor too
+  _handleFormOpen = () => {   
     this.setState({
       isOpen:true
     })
   }
 
-  _handleCancel(){
+  _handleCancel = () => {
     this.setState({
       isOpen: false
     })
