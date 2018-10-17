@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import EventList from "../EventList/EventList";
 import EventForm from "../../EventForm/EventForm";
 import { Grid, Button } from "semantic-ui-react";
-
+import cuid from 'cuid';
 // array of static events to use as seeding data
 const events = [
   {
@@ -82,7 +82,15 @@ class EventDashboard extends Component {
       isOpen: false
     })
   }
-
+  _handleCreateEvent = (newEvent) => {
+    newEvent.id = cuid();
+    newEvent.hostPhotoURL = "https://randomuser.me/api/portraits/women/54.jpg"
+    let updatedEvents = [...this.state.events, newEvent];   //alternative to this.state.events.push()
+    this.setState({
+      events: updatedEvents,
+      isOpen: false
+    })
+  }
 
   render() {
     return (
@@ -95,7 +103,9 @@ class EventDashboard extends Component {
           <Button  onClick = {this._handleFormOpen} positive content="Create Event" />
           {/* if conditional shown by &&*/}
           { this.state.isOpen &&
-           <EventForm handleCancel = {this._handleCancel}/>  }  
+            <EventForm
+              handleCancel={this._handleCancel}
+              handleCreateEvent={this._handleCreateEvent} />  }  
 
         </Grid.Column>
       </Grid>
